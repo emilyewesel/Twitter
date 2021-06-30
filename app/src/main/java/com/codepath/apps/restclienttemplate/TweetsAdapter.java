@@ -38,6 +38,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         return new ViewHolder(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
         Tweet tweet = tweets.get(position);
@@ -96,6 +97,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         }
 
 
+        @RequiresApi(api = Build.VERSION_CODES.N)
         public void bind(Tweet tweet) {
             Log.d("this is the tweet!", "tweet :" + tweet.body);
             tvTweetBody.setText(tweet.body);

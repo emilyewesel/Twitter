@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/compose"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="Compose"
+        app:showAsAction="always" />
+
+    <item
+        app:showAsAction="always|withText"
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="81dp"
+        android:text="Logout"
+        android:title="Logout" />
+
+</menu>

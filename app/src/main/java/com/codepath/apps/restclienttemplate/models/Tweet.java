@@ -5,16 +5,22 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Parcel
 public class Tweet {
 
     public String body;
     public String createdAt;
     public User user;
 
+    //empty constrcutor for Parcel
+    public void Tweet (){
+
+    }
     public static Tweet fromJson(JSONObject JsonObject) throws JSONException {
         Tweet tweet = new Tweet();
         tweet.body = JsonObject.getString("text");
