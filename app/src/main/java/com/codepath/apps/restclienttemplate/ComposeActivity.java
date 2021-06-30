@@ -24,7 +24,7 @@ public class ComposeActivity extends AppCompatActivity {
 
     EditText etCompose;
     Button btnTweet;
-    public static final int tweetMax = 140;
+    public static final int tweetMax = 280;
 
     TwitterClient client;
 
