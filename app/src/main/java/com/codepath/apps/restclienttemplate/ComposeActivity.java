@@ -40,6 +40,7 @@ public class ComposeActivity extends AppCompatActivity {
         btnTweet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Here is some error handing for if the tweet is invalid
                 String tweetContent = etCompose.getText().toString();
                 if (tweetContent.isEmpty()){
                     Toast.makeText(ComposeActivity.this, "Please enter a tweet.", Toast.LENGTH_SHORT).show();
@@ -48,7 +49,6 @@ public class ComposeActivity extends AppCompatActivity {
                 if(tweetContent.length() > tweetMax){
                     Toast.makeText(ComposeActivity.this, "Tweet is too long", Toast.LENGTH_SHORT).show();
                     return;
-
                 }
                 Toast.makeText(ComposeActivity.this, tweetContent, Toast.LENGTH_SHORT).show();
                 client.publishTweet(tweetContent, new JsonHttpResponseHandler() {
@@ -58,7 +58,7 @@ public class ComposeActivity extends AppCompatActivity {
                         try {
                             Tweet tweet = Tweet.fromJson(json.jsonObject);
                             Log.i("composed", "published tweet");
-
+                            //here we pass the information to the other screen!
                             Intent intent = new Intent();
                             intent.putExtra("tweet", Parcels.wrap(tweet));
                             //set result code and bundle data
@@ -77,6 +77,5 @@ public class ComposeActivity extends AppCompatActivity {
             }
         });
 
-        //make an api call to publish the tweet
     }
 }

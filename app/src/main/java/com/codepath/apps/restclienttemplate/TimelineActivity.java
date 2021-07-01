@@ -56,9 +56,7 @@ public class TimelineActivity extends AppCompatActivity {
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                // Your code to refresh the list here.
-                // Make sure you call swipeContainer.setRefreshing(false)
-                // once the network request has completed successfully.
+                //here is an asynchronous call to the timeline
                 fetchTimelineAsync(0);
             }
         });
@@ -76,9 +74,9 @@ public class TimelineActivity extends AppCompatActivity {
         client.getHomeTimeline(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
-                // Remember to CLEAR OUT old items before appending in the new ones
+                // Clearing out old items before adding the updated data
                 adapter.clear();
-                // ...the data has come back, add new items to your adapter...
+                //adding the new data to the adapter so that it can be displayed by the recycler view
                 try {
                     adapter.addAll(Tweet.fromJSONArray(json.jsonArray));
                 } catch (JSONException e) {
@@ -111,11 +109,13 @@ public class TimelineActivity extends AppCompatActivity {
             Log.e("creating options!", "composed");
             Toast.makeText(this, "composed", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, ComposeActivity.class);
-            //startActivity(intent);
+            //the startActivityForResult call has the advantage of going back to the homescreen
+            // when the tweet has been published (as compared to just startActivity)
             startActivityForResult(intent, REQUEST_CODE);
             return true;
         }
         if (item.getItemId() == R.id.button2){
+            //here is if the user wants to log out
             onLogoutButton();
         }
 
@@ -129,10 +129,10 @@ public class TimelineActivity extends AppCompatActivity {
             //get data from the intent (tweet)
             Tweet tweet = Parcels.unwrap(data.getParcelableExtra("tweet"));
             //update the recycler view with this tweet
-            //Modify datasets
             tweets.add(0, tweet);
             //update the adapter
             adapter.notifyItemInserted(0);
+            //This next line makes it so that you don't have to scroll up to see the new tweet
             rvTweets.smoothScrollToPosition(0);
         }
         super.onActivityResult(requestCode, resultCode, data);

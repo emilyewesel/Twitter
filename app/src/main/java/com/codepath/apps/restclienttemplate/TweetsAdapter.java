@@ -50,7 +50,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         return tweets.size();
     }
 
-    // Clean all elements of the recycler
+    // Clear all elements of the recycler
     public void clear() {
         tweets.clear();
         notifyDataSetChanged();
@@ -78,6 +78,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView time_stamp;
         ImageView ivMedia;
 
+        //hooking up variables to xml elements
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             tvTweetBody = itemView.findViewById(R.id.tvBody);
@@ -87,6 +88,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             ivMedia = itemView.findViewById(R.id.media);
 
         }
+        //This function converts an absolute timestamp (12:56pm) into a relative timestamp (5m ago)
         @RequiresApi(api = Build.VERSION_CODES.N)
         public String getRelativeTimeAgo(String rawJsonDate) {
             String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
@@ -120,11 +122,13 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             time_stamp.setText(timeSince);
             Glide.with(context).load(tweet.user.publicImageUrl).into(ivProfileImage);
 
+            //This is the case where the tweet does not include the image
             if(tweet.imageUrl.equals("")){
                 Log.d(TAG, "We should not see an image"+ tweet.imageUrl);
                 ivMedia.setVisibility(View.GONE);
 
             }
+            //This is the case where there is an embedded image to display
             else{
                 Log.d("IMAGE", "We should be seeing an image!!" + tweet.imageUrl);
                 ivMedia.setVisibility(View.VISIBLE);
