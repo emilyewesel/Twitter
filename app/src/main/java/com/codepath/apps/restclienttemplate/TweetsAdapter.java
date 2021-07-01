@@ -76,6 +76,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvScreenName;
         TextView tvTweetBody;
         TextView time_stamp;
+        ImageView ivMedia;
 
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -83,6 +84,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             time_stamp = itemView.findViewById(R.id.timeStamp);
+            ivMedia = itemView.findViewById(R.id.media);
 
         }
         @RequiresApi(api = Build.VERSION_CODES.N)
@@ -108,15 +110,26 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             return relativeDate;
         }
 
-
+        String TAG = "TweetsAdapter";
         @RequiresApi(api = Build.VERSION_CODES.N)
         public void bind(Tweet tweet) {
-            Log.d("this is the tweet!", "tweet :" + tweet.body);
+            Log.d(TAG, "this is the tweet!"+ "tweet :" + tweet.body);
             tvTweetBody.setText(tweet.body);
             tvScreenName.setText(tweet.user.handle);
             String timeSince = getRelativeTimeAgo(tweet.createdAt);
             time_stamp.setText(timeSince);
             Glide.with(context).load(tweet.user.publicImageUrl).into(ivProfileImage);
+
+            if(tweet.imageUrl.equals("")){
+                Log.d(TAG, "We should not see an image"+ tweet.imageUrl);
+                ivMedia.setVisibility(View.GONE);
+
+            }
+            else{
+                Log.d("IMAGE", "We should be seeing an image!!" + tweet.imageUrl);
+                ivMedia.setVisibility(View.VISIBLE);
+                Glide.with(context).load(tweet.imageUrl).into(ivMedia);
+            }
 
         }
     }
