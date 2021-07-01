@@ -18,13 +18,20 @@ public class Tweet {
     public User user;
     public String imageUrl;
 
-    //empty constrcutor for Parcel
+    //empty constructor for Parcel
     public void Tweet (){
 
     }
     public static Tweet fromJson(JSONObject JsonObject) throws JSONException {
         Tweet tweet = new Tweet();
-        tweet.body = JsonObject.getString("text");
+
+        //tweet.body = JsonObject.getString("text");
+
+        if(JsonObject.has("full_text")) {
+            tweet.body = JsonObject.getString("full_text");
+        } else {
+            tweet.body = JsonObject.getString("text");
+        }
         Log.i("the object is ", " " +JsonObject.toString());
         tweet.createdAt = JsonObject.getString("created_at");
         tweet.user = User.fromJson(JsonObject.getJSONObject("user"));

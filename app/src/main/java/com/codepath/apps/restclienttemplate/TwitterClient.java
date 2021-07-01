@@ -52,6 +52,7 @@ public class TwitterClient extends OAuthBaseClient {
 		RequestParams params = new RequestParams();
 		params.put("count", 25);
 		params.put("since_id", 1);
+		params.put("tweet_mode", "extended");
 		//this GET request allows us to view tweets from the twitter API
 		client.get(apiUrl, params, handler);
 		//Log.i("hii let's look at the client", " " + client.toString());
@@ -63,6 +64,7 @@ public class TwitterClient extends OAuthBaseClient {
 		// Can specify query string params directly or through RequestParams.
 		RequestParams params = new RequestParams();
 		params.put("status", tweetContent);
+
 		//This post request allows us to post a new tweet
 		client.post(apiUrl, params, "", handler);
 		//Log.i("hii let's look at the client", " " + client.toString());
