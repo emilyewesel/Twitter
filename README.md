@@ -1,6 +1,6 @@
-# Project 3 - *Name of App Here*
+# Project 3 - Twitter
 
-**Name of your app** is an android app that allows a user to view their Twitter timeline and post a new tweet. The app utilizes [Twitter REST API](https://dev.twitter.com/rest/public).
+**Twitter** is an android app that allows a user to view their Twitter timeline and post a new tweet. The app utilizes [Twitter REST API](https://dev.twitter.com/rest/public).
 
 Time spent: **X** hours spent in total
 
@@ -51,8 +51,7 @@ Here's a walkthrough of implemented user stories:
 GIF created with [Kap](https://getkap.co/).
 
 ## Notes
-
-Describe any challenges encountered while building the app.
+In this app, I spent a long time debugging why I wasn't seeing any tweets displayed. Eventually, I realized it was because I wasn't following anyone on Twitter. After this, I had a much better understanding of the Twitter API and everything became much smoother. 
 
 ## Open-source libraries used
 
